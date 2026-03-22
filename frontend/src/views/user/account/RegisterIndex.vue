@@ -5,7 +5,7 @@
 <template>
   <div class="flex justify-center mt-30">
     <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-      <legend class="fieldset-legend">登录</legend>
+      <legend class="fieldset-legend">注册</legend>
 
       <label class="label">用户名</label>
       <input type="text" class="input" placeholder="用户名" />
