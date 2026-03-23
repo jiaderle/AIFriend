@@ -126,7 +126,7 @@ STATICFILES_DIRS = [  # 开发阶段使用，生产阶段需要注释掉
     BASE_DIR / 'static',
 ]
 
-MEDIA_URL = 'http://127.0.0.1:8001/media/'
+MEDIA_URL = 'http://127.0.0.1:8000/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
