@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.utils.timezone import now
-from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -16,20 +15,20 @@ class UpdateProfileView(APIView):
             user = request.user
             user_profile = UserProfile.objects.get(user=user)
             username = request.data.get('username').strip()
-            profile = request.objects.get('profile')[:500]
+            profile = request.data.get('profile').strip()[:500]
             photo = request.FILES.get('photo', None)
 
             if not username:
                 return Response({
-                    'result': '用户名不能为空',
+                    'result': '用户名不能为空'
                 })
             if not profile:
                 return Response({
-                    'result': '简介不能为空',
+                    'result': '简介不能为空'
                 })
             if username != user.username and User.objects.filter(username=username).exists():
                 return Response({
-                    'result': '用户名已存在',
+                    'result': '用户名已存在'
                 })
 
             if photo:
