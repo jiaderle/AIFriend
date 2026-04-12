@@ -1,6 +1,6 @@
 <script setup>
 import UserInfoField from "@/views/user/space/components/UserInfoField.vue";
-import {nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef} from "vue";
+import {nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef, watch} from "vue";
 import {useRoute} from "vue-router";
 import api from "@/js/http/api.js";
 import Character from "@/components/character/Character.vue";
@@ -11,6 +11,18 @@ const isLoading = ref(false)
 const hasCharacters = ref(true)
 const sentinelRef = useTemplateRef('sentinel-ref')
 const route = useRoute()
+
+function reset() {
+  userProfile.value = null
+  characters.value = []
+  isLoading.value = false
+  hasCharacters.value = true
+  loadMore()
+}
+
+watch(() => route.params.user_id, () => {
+  reset()
+})
 
 function checkSentinelVisible() {  // 判断哨兵是否能被看到
   if (!sentinelRef.value) return false
@@ -80,7 +92,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="flex flex-col items-center mb-12">
-    <UserInfoField v-if="userProfile" :userProfile="userProfile" />
+    <UserInfoField :userProfile="userProfile" />
     <div class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-9 mt-12 justify-items-center w-full px-9">
       <Character
         v-for="character in characters"
