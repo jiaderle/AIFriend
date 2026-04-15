@@ -12,3 +12,4 @@ venv/
 *.env
 backend/web/documents/data.txt
 backend/web/documents/lancedb_storage/
+frontend/public/vad/
